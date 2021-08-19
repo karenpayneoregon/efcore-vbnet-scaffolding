@@ -79,7 +79,6 @@ Partial Public Class UnitTest1
     <TestTraits(Trait.WarmupEntityFramework)>
     Public Async Function A_Warmup() As Task
 
-
         Using context = New NorthWindContext
             Dim dummy = Await context.Customers.CountAsync()
         End Using

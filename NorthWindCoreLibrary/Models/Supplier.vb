@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
+﻿
 Namespace Models
     Public Partial Class Supplier
         Public Sub New()
@@ -20,7 +17,9 @@ Namespace Models
         Public Property Phone As String
         Public Property Fax As String
         Public Property HomePage As String
-
+        Public Overrides Function ToString() As String
+            Return CompanyName
+        End Function
         Public Overridable Property CountryIdentifierNavigation As Country
         Public Overridable Property Products As ICollection(Of Product)
     End Class

@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
+﻿
 Namespace Models
     Public Partial Class ContactType
         Public Sub New()

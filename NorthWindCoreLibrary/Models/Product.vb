@@ -20,6 +20,10 @@ Namespace Models
         Public Property Discontinued As Boolean
         Public Property DiscontinuedDate As DateTime?
 
+        Public Overrides Function ToString() As String
+            Return ProductName
+        End Function
+
         Public Overridable Property Category As Category
         Public Overridable Property Supplier As Supplier
         Public Overridable Property OrderDetails As ICollection(Of OrderDetail)

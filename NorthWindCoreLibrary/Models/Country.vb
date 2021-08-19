@@ -13,6 +13,10 @@ Namespace Models
         Public Property CountryIdentifier As Integer
         Public Property Name As String
 
+        Public Overrides Function ToString() As String
+            Return Name
+        End Function
+
         Public Overridable Property Customers As ICollection(Of Customer)
         Public Overridable Property Employees As ICollection(Of Employee)
         Public Overridable Property Suppliers As ICollection(Of Supplier)

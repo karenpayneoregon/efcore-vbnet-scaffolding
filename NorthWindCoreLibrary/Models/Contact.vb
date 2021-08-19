@@ -1,9 +1,5 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
-Namespace Models
-    Public Partial Class Contact
+﻿Namespace Models
+    Partial Public Class Contact
         Public Sub New()
             ContactDevices = New HashSet(Of ContactDevice)()
             Customers = New HashSet(Of Customer)()

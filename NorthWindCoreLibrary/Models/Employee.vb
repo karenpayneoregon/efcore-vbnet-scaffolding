@@ -53,6 +53,10 @@ Namespace Models
         ''' </summary>
         Public Property ReportsTo As Integer?
 
+        Public Overrides Function ToString() As String
+            Return $"{FirstName} {LastName}"
+        End Function
+
         Public Overridable Property ContactTypeIdentifierNavigation As ContactType
         Public Overridable Property CountryIdentifierNavigation As Country
         Public Overridable Property EmployeeTerritories As ICollection(Of EmployeeTerritory)

@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
+﻿
 Namespace Models
     Public Partial Class OrderDetail
         Public Property OrderId As Integer

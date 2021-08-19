@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
+﻿
 Namespace Models
     Public Partial Class ContactDevice
         Public Property Id As Integer

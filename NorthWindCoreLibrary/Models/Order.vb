@@ -22,6 +22,10 @@ Namespace Models
         Public Property ShipPostalCode As String
         Public Property ShipCountry As String
 
+        Public Overrides Function ToString() As String
+            Return OrderId.ToString()
+        End Function
+
         Public Overridable Property CustomerIdentifierNavigation As Customer
         Public Overridable Property Employee As Employee
         Public Overridable Property ShipViaNavigation As Shipper

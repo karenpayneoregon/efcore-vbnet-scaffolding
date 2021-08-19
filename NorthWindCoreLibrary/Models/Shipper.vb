@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Microsoft.VisualBasic
-Imports System.Collections.Generic
-
+﻿
 Namespace Models
     Public Partial Class Shipper
         Public Sub New()
@@ -11,7 +8,9 @@ Namespace Models
         Public Property ShipperId As Integer
         Public Property CompanyName As String
         Public Property Phone As String
-
+        Public Overrides Function ToString() As String
+            Return CompanyName
+        End Function
         Public Overridable Property Orders As ICollection(Of Order)
     End Class
 End Namespace
