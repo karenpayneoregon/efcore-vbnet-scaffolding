@@ -1,12 +1,15 @@
 ﻿Imports Microsoft.EntityFrameworkCore
 Imports NorthWindCoreLibrary_vb.Containers
 Imports NorthWindCoreLibrary_vb.Data
+Imports NorthWindCoreLibrary_vb.Extensions
+Imports NorthWindCoreLibrary_vb.Models
 
 Namespace Classes
 
     Public Class CustomersOperations
 
         Public Shared Function CustomerProjection() As List(Of CustomerItem)
+
             Using context = New NorthWindContext()
 
                 Return context.Customers.
@@ -17,6 +20,16 @@ Namespace Classes
                     ToList()
 
             End Using
+
+        End Function
+        Public Shared Function CustomerIncludes() As List(Of Customer)
+
+            Using context = New NorthWindContext()
+
+                Return context.Customers.IncludeContactsDevicesCountry().ToList()
+
+            End Using
+
         End Function
 
     End Class
