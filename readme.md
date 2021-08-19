@@ -1,10 +1,12 @@
 # About 
 
-Code within this repository provide a base to show that work Microsoft has done to support VB.NET developers writing desktop solution with Visual Studio 2019 and higher targeting .NET Core Framework to use EF Core.
+Code within this repository provide a base to show that work Microsoft has done to support `VB.NET` developers writing desktop solution with `Visual Studio 2019` and higher targeting `.NET Core Framework` to use `EF Core 5`.
 
-A mixture of simple and intermediate read samples. 
+:white_circle:  A mixture of simple and intermediate read samples. 
 
-No CRUD as this requires some form of mocking and not getting into this as my choices are not free.
+:white_circle:  No CRUD as this requires some form of mocking.
+
+:white_circle: All samples are in unit test methods
 
 ---
 
