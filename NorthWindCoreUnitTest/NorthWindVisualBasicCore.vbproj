@@ -16,6 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NorthWindCoreLibrary\NorthWindCoreLibrary_vb.vbproj" />
+    <ProjectReference Include="..\WinFormValidationLibrary\WinFormValidationLibrary.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

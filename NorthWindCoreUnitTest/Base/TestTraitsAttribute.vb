@@ -6,6 +6,9 @@ Public Enum Trait
     EfCoreContactGroup
     EFCoreOrderGroup
     WarmupEntityFramework
+    Validating
+    JsonValidation
+    EfCoreCustomersSelectLocal
 End Enum
 ''' <summary>
 ''' Declarative class for using Trait enum about for traits on test method.

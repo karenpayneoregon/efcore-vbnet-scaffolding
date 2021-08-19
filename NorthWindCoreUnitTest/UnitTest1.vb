@@ -1,3 +1,4 @@
+Imports System.ComponentModel
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
@@ -7,6 +8,8 @@ Imports NorthWindCoreLibrary_vb.Containers
 Imports NorthWindCoreLibrary_vb.Data
 Imports NorthWindCoreLibrary_vb.Models
 Imports NorthWindVisualBasicCore.Base
+Imports WinFormValidationLibrary.LanguageExtensions
+Imports WinFormValidationLibrary.Validators
 
 <TestClass>
 Partial Public Class UnitTest1
@@ -16,26 +19,42 @@ Partial Public Class UnitTest1
     <TestTraits(Trait.EfCoreCustomersSelect)>
     Sub LoadCustomers()
 
-
         Dim customers As List(Of CustomerItem) = CustomersOperations.CustomerProjection()
 
         Assert.AreEqual(customers.Count, 91)
         Assert.IsTrue(customers.FirstOrDefault().CompanyName = "Alfreds Futterkiste")
 
+    End Sub
+    <TestMethod>
+    <TestTraits(Trait.EfCoreCustomersSelectLocal)>
+    Sub LoadCustomersLocal()
+
+        Using context = New NorthWindContext()
+
+            Dim customers As BindingList(Of Customer) = context.Customers.Local.ToBindingList()
+
+            Dim customer = CustomerGood
+            customers.Add(customer)
+
+            Assert.IsTrue(context.Entry(customer).State = EntityState.Added)
+
+            customer.CompanyName = FirstCompanyName
+            customer.CustomerIdentifier = 200
+            context.Entry(customer).State = EntityState.Modified
+
+            Assert.IsTrue(context.Entry(customer).State = EntityState.Modified)
+
+        End Using
 
     End Sub
     <TestMethod>
     <TestTraits(Trait.EfCoreCustomersSelect)>
     Sub LoadCustomersPredefinedIncludes()
 
-        Using context = New NorthWindContext
+        Dim customers As List(Of Customer) = CustomersOperations.CustomerIncludes()
 
-            Dim customers As List(Of Customer) = CustomersOperations.CustomerIncludes()
-
-            Assert.AreEqual(customers.Count, 91)
-            Assert.IsTrue(customers.FirstOrDefault().CompanyName = "Alfreds Futterkiste")
-
-        End Using
+        Assert.AreEqual(customers.Count, 91)
+        Assert.IsTrue(customers.FirstOrDefault().CompanyName = "Alfreds Futterkiste")
 
     End Sub
 
@@ -84,5 +103,43 @@ Partial Public Class UnitTest1
         End Using
 
     End Function
+
+    <TestMethod>
+    <TestTraits(Trait.Validating)>
+    Sub ValidateGoodCustomerTest()
+        Dim validationResult As EntityValidationResult = ValidationHelper.ValidateEntity(CustomerGood)
+        Assert.IsFalse(validationResult.HasError)
+    End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.Validating)>
+    Sub ValidateBadCustomerNoContactTest()
+
+        Dim validationResult As EntityValidationResult = ValidationHelper.ValidateEntity(CustomerBadNoContactIdentifier)
+
+        Assert.IsTrue(validationResult.HasError)
+        Assert.IsTrue(validationResult.ErrorMessageList().Contains("Contact Id is required"))
+
+    End Sub
+    <TestMethod>
+    <TestTraits(Trait.Validating)>
+    Sub ValidateBadCustomerNoContactNoCompanyNameTest()
+
+        Dim validationResult As EntityValidationResult = ValidationHelper.ValidateEntity(CustomerBadNoContactIdentifierNoCompanyName)
+
+        Assert.IsTrue(validationResult.HasError)
+
+        Assert.IsTrue(
+            validationResult.ErrorMessageList().Contains("Contact Id is required") AndAlso
+            validationResult.ErrorMessageList().Contains("Company Name is required"))
+
+    End Sub
+    <TestMethod>
+    <TestTraits(Trait.JsonValidation)>
+    Sub CheckConnectionString()
+        Dim connectionString = BuildConnection()
+
+        Assert.AreEqual(connectionString, ConextConnectionString)
+    End Sub
 
 End Class

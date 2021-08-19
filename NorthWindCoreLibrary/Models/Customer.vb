@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports Microsoft.VisualBasic
 Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
 
 Namespace Models
     Public Partial Class Customer
@@ -15,10 +16,12 @@ Namespace Models
         ''' <summary>
         ''' Company
         ''' </summary>
+        <Required(ErrorMessage:="{0} is required")>
         Public Property CompanyName As String
         ''' <summary>
         ''' ContactId
         ''' </summary>
+        <Required(ErrorMessage:="{0} is required")>
         Public Property ContactId As Integer?
         ''' <summary>
         ''' Street
