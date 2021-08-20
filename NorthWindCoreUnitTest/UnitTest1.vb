@@ -1,10 +1,7 @@
 Imports System.ComponentModel
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
-
-
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-
 Imports NorthWindCoreLibrary
 Imports NorthWindCoreLibrary.Classes
 Imports NorthWindCoreLibrary.Containers
@@ -28,6 +25,19 @@ Partial Public Class UnitTest1
         Assert.IsTrue(customers.FirstOrDefault().CompanyName = "Alfreds Futterkiste")
 
     End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.QueryStringInspection)>
+    Sub QueryString()
+        Dim expected =
+                "SELECT [c].[CustomerIdentifier], [c].[City], [c].[CompanyName], [c].[ContactId], [c].[ContactTypeIdentifier], [c].[CountryIdentifier], [c].[Fax], [c].[ModifiedDate], [c].[Phone], [c].[PostalCode], [c].[Region], [c].[Street]
+FROM [Customers] AS [c]
+WHERE [c].[CompanyName] LIKE N'an%'"
+
+        Assert.AreEqual(CompanyNameStartsWithQueryString(), expected)
+
+    End Sub
+
     <TestMethod>
     <TestTraits(Trait.EfCoreCustomersSelectLocal)>
     Sub LoadCustomersLocal()
@@ -73,6 +83,45 @@ Partial Public Class UnitTest1
                 Debug.WriteLine($"{vbTab}{contactItem.FullName}")
             Next
         Next
+
+    End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.EfCoreLikeStartsWith)>
+    Sub CompanyNameStartsWithTest()
+        Assert.AreEqual(CompanyNameStartsWith(), 2)
+    End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.EfCoreLikeStartsWith)>
+    Sub CompanyNameContainsTest()
+        Assert.AreEqual(CompanyNameEndWith(), 3)
+    End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.EfCoreLikeStartsWith)>
+    Sub CompanyNameEndsWithTest()
+        Assert.AreEqual(CompanyNameEndWith(), 3)
+    End Sub
+
+
+    <TestMethod>
+    <TestTraits(Trait.EfCoreContactUpdate)>
+    Sub UpdateContact()
+
+        Dim identifier = 2
+
+        Dim contact = ContactOperations.ContactByIdentifier(identifier)
+        Dim originalFirstName = contact.FirstName
+
+        contact.FirstName = contact.FirstName & "1"
+        Assert.IsTrue(ContactOperations.UpdateContact(contact))
+
+        contact.FirstName = originalFirstName
+        Assert.IsTrue(ContactOperations.UpdateContact(contact))
+
+        contact = ContactOperations.ContactByIdentifier(identifier)
+        Assert.IsTrue(contact.FirstName = originalFirstName)
 
     End Sub
 
@@ -153,6 +202,13 @@ Partial Public Class UnitTest1
         Debug.WriteLine(ConextConnectionString)
         Assert.AreEqual(connectionString, ConextConnectionString)
 
+    End Sub
+
+    <TestMethod>
+    <TestTraits(Trait.EFCoreLinqJoin)>
+    Public Sub CustomerJoinTest()
+        Dim results As List(Of CustomerEntity) = JoinedCustomers()
+        Assert.IsTrue(results.Count = 91)
     End Sub
 
 End Class

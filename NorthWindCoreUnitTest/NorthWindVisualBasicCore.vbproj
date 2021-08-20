@@ -23,4 +23,8 @@
     <ProjectReference Include="..\WinFormValidationLibrary\WinFormValidationLibrary.vbproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
 </Project>

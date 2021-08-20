@@ -1,6 +1,7 @@
-﻿Imports NorthWindCoreLibrary.Containers
+﻿Imports Microsoft.EntityFrameworkCore
+Imports NorthWindCoreLibrary.Containers
 Imports NorthWindCoreLibrary.Data
-
+Imports NorthWindCoreLibrary.Models
 
 Namespace Classes
 
@@ -15,6 +16,21 @@ Namespace Classes
                 GroupBy(Function(contactItem) contactItem.ContactTypeIdentifier).
                 Select(Function(grouped) grouped).OrderBy(Function(contactItem) contactItem.FirstOrDefault().ContactTitle).
                 ToList()
+        End Function
+        Public Shared Function ContactByIdentifier(identifier As Integer) As Contact
+            Using context As New NorthWindContext
+                '
+                ' Most developers will use FirstOrDefault, for this operation Find is better
+                '
+                Return context.Contacts.Find(identifier) ' .FirstOrDefault(Function(contact) contact.ContactId = identifier)
+            End Using
+        End Function
+
+        Public Shared Function UpdateContact(contact As Contact) As Boolean
+            Using context As New NorthWindContext
+                context.Entry(contact).State = EntityState.Modified
+                Return context.SaveChanges() = 1
+            End Using
         End Function
     End Class
 End Namespace

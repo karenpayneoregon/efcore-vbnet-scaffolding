@@ -140,3 +140,48 @@ Public Class UnitTest1
     End Sub
 End Class
 ```
+
+## Read/update Contact
+
+```vbnet
+Public Shared Function ContactByIdentifier(identifier As Integer) As Contact
+    Using context As New NorthWindContext
+        Return context.Contacts.FirstOrDefault(Function(contact) contact.ContactId = identifier)
+    End Using
+End Function
+
+Public Shared Function UpdateContact(contact As Contact) As Boolean
+    Using context As New NorthWindContext
+        context.Entry(contact).State = EntityState.Modified
+        Return context.SaveChanges() = 1
+    End Using
+End Function
+```
+
+## Test method
+
+```vbnet
+<TestMethod>
+<TestTraits(Trait.EfCoreContactUpdate)>
+Sub UpdateContact()
+
+    Dim identifier = 2
+
+    Dim contact = ContactOperations.ContactByIdentifier(identifier)
+    Dim originalFirstName = contact.FirstName
+
+    contact.FirstName = contact.FirstName & "1"
+    Assert.IsTrue(ContactOperations.UpdateContact(contact))
+
+    contact.FirstName = originalFirstName
+    Assert.IsTrue(ContactOperations.UpdateContact(contact))
+
+    contact = ContactOperations.ContactByIdentifier(identifier)
+    Assert.IsTrue(contact.FirstName = originalFirstName)
+
+End Sub
+```
+
+### Note
+
+Best to mock data for CRUD

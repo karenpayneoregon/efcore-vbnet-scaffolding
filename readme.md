@@ -4,7 +4,7 @@ Code within this repository provide a base to show that work Microsoft has done 
 
 :white_circle:  A mixture of simple and intermediate read samples. 
 
-:white_circle:  No CRUD as this requires some form of mocking.
+:white_circle:  No CRUD as this requires some form of mocking expect one `update example` in `ContactsOperations`.
 
 :white_circle: All samples are in unit test methods
 
