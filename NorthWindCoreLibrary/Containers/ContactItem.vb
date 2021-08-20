@@ -1,5 +1,5 @@
 ﻿Imports System.Linq.Expressions
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Models
 
 Namespace Containers
 

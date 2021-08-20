@@ -1,5 +1,6 @@
-﻿Imports NorthWindCoreLibrary_vb.Containers
-Imports NorthWindCoreLibrary_vb.Data
+﻿Imports NorthWindCoreLibrary.Containers
+Imports NorthWindCoreLibrary.Data
+
 
 Namespace Classes
 

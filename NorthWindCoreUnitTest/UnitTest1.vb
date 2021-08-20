@@ -1,12 +1,15 @@
 Imports System.ComponentModel
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
+
+
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports NorthWindCoreLibrary_vb
-Imports NorthWindCoreLibrary_vb.Classes
-Imports NorthWindCoreLibrary_vb.Containers
-Imports NorthWindCoreLibrary_vb.Data
-Imports NorthWindCoreLibrary_vb.Models
+
+Imports NorthWindCoreLibrary
+Imports NorthWindCoreLibrary.Classes
+Imports NorthWindCoreLibrary.Containers
+Imports NorthWindCoreLibrary.Data
+Imports NorthWindCoreLibrary.Models
 Imports NorthWindVisualBasicCore.Base
 Imports WinFormValidationLibrary.LanguageExtensions
 Imports WinFormValidationLibrary.Validators
@@ -137,9 +140,11 @@ Partial Public Class UnitTest1
     <TestMethod>
     <TestTraits(Trait.JsonValidation)>
     Sub CheckConnectionString()
+
         Dim connectionString = BuildConnection()
 
         Assert.AreEqual(connectionString, ConextConnectionString)
+
     End Sub
 
 End Class

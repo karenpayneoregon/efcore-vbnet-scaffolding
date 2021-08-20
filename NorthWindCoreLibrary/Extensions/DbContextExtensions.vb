@@ -5,9 +5,9 @@ Imports System.Threading
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.ChangeTracking.Internal
 Imports Microsoft.EntityFrameworkCore.Metadata
-Imports NorthWindCoreLibrary_vb.Classes
-Imports NorthWindCoreLibrary_vb.Data
-Imports NorthWindCoreLibrary_vb.Interfaces
+Imports NorthWindCoreLibrary.Classes
+Imports NorthWindCoreLibrary.Data
+Imports NorthWindCoreLibrary.Interfaces
 
 Namespace Extensions
 

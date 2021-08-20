@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.EntityFrameworkCore
-Imports NorthWindCoreLibrary_vb.Data
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Data
+Imports NorthWindCoreLibrary.Models
+
 
 Namespace Classes
     Public Class OrderOperations

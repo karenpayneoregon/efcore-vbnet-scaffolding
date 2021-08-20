@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.Extensions.Configuration
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Models
 
 Namespace Data
     Partial Public Class NorthWindContext

@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.Extensions.Configuration
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports NorthWindCoreLibrary_vb.Classes
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Classes
+Imports NorthWindCoreLibrary.Models
 
 ' ReSharper disable once CheckNamespace - do not change
 Partial Public Class UnitTest1

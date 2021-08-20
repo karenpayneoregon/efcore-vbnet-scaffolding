@@ -1,9 +1,10 @@
 ﻿Imports System.ComponentModel
 Imports Microsoft.EntityFrameworkCore
-Imports NorthWindCoreLibrary_vb.Containers
-Imports NorthWindCoreLibrary_vb.Data
-Imports NorthWindCoreLibrary_vb.Extensions
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Containers
+Imports NorthWindCoreLibrary.Data
+Imports NorthWindCoreLibrary.Extensions
+Imports NorthWindCoreLibrary.Models
+
 
 Namespace Classes
 

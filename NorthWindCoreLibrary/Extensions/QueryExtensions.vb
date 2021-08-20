@@ -1,5 +1,5 @@
 ﻿Imports Microsoft.EntityFrameworkCore
-Imports NorthWindCoreLibrary_vb.Models
+Imports NorthWindCoreLibrary.Models
 
 Namespace Extensions
 

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class projects", "Class projects", "{F2271533-8A73-45D1-B731-FE227E7D4EB2}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "NorthWindCoreLibrary_vb", "NorthWindCoreLibrary\NorthWindCoreLibrary_vb.vbproj", "{AEB63A4E-EA0E-4AF0-863F-9875FE1EF461}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "NorthWindCoreLibrary", "NorthWindCoreLibrary\NorthWindCoreLibrary.vbproj", "{AEB63A4E-EA0E-4AF0-863F-9875FE1EF461}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test projects", "Test projects", "{C6C30F8B-4D76-428C-AACB-8776A40E015E}"
 EndProject
