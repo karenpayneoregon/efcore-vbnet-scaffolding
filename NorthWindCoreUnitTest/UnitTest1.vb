@@ -137,12 +137,20 @@ Partial Public Class UnitTest1
             validationResult.ErrorMessageList().Contains("Company Name is required"))
 
     End Sub
+    ''' <summary>
+    ''' Runs as first test in the event the connection string is wrong we can inspect it
+    ''' This is important on connection failure as we can first see if the connection string has
+    ''' been read correctly. Failure most likely means SQLEXPRESS is not available which means
+    ''' SQL-Server is not properly installed or a higher edition of SQL-Server is installed which
+    ''' means a server name is needed to connect.
+    ''' </summary>
     <TestMethod>
     <TestTraits(Trait.JsonValidation)>
-    Sub CheckConnectionString()
+    Sub A_CheckConnectionString()
 
         Dim connectionString = BuildConnection()
 
+        Debug.WriteLine(ConextConnectionString)
         Assert.AreEqual(connectionString, ConextConnectionString)
 
     End Sub
