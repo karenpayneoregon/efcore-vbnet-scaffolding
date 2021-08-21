@@ -62,7 +62,7 @@ Scaffold-DbContext
 In short, write out the command using the following common parameters where if there are typos or incorrectly specifying a switch or missing a switch the command will need to be modified and executed again. 
 
 | Argument  |  Description  |
-| ---         |  ---  |
+| :---         |  :---  |
 | -Connection <String>|	The `connection string` to the database. For ASP.NET Core 2.x projects, the value can be name=<name of connection string>. In that case the name comes from the configuration sources that are set up for the project. This is a positional parameter and is required. |
 | -Provider <String>|	The `provider to use`. Typically this is the name of the NuGet package, for example: Microsoft.EntityFrameworkCore.SqlServer. This is a positional parameter and is required. |
 | -OutputDir <String>|	The `directory to put files` in. Paths are relative to the project directory. |
