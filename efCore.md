@@ -12,6 +12,11 @@ dotnet ef dbcontext scaffold ... --table Customers --table Contacts
 
 Which requires ef command to be installed for dotnet which can be done inside Visual Studio using the Developer PowerShell.
 
+**Install dotnet ef**
+```
+  dotnet tool install --global dotnet-ef
+```
+
 ![img](assets/InstallDotNet_Ef.png)
 
 If this is not done the following error message will be displayed.
