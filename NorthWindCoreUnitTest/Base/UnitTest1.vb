@@ -19,15 +19,19 @@ Partial Public Class UnitTest1
     Public Function CompanyNameStartsWith() As Integer
 
         Using context As New NorthWindContext
+
             Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "an%")).ToList()
             Return results.Count
+
         End Using
+
     End Function
     Public Function CompanyNameStartsWithQueryString() As String
 
         Using context As New NorthWindContext
             Return context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "an%")).ToQueryString()
         End Using
+
     End Function
     Public Function CompanyNameContains() As Integer
 
@@ -35,6 +39,7 @@ Partial Public Class UnitTest1
             Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "%S.A.")).ToList()
             Return results.Count
         End Using
+
     End Function
     Public Function CompanyNameEndWith() As Integer
 
@@ -42,16 +47,15 @@ Partial Public Class UnitTest1
             Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "%Comidas%")).ToList()
             Return results.Count
         End Using
+
     End Function
-
-
-
 
     Public ReadOnly Property CustomerGood() As Customer
         Get
             Return New Customer() With {.CompanyName = "Some Company", .ContactId = 1}
         End Get
     End Property
+
     Public ReadOnly Property CustomerBadNoContactIdentifier() As Customer
         Get
             Return New Customer() With {.CompanyName = "Some Company"}
@@ -63,7 +67,9 @@ Partial Public Class UnitTest1
         End Get
     End Property
     Private Function JoinedCustomers() As List(Of CustomerEntity)
+
         Dim results As List(Of CustomerEntity)
+
         Using context = New NorthWindContext()
             results = (
                 From customer In context.Customers
@@ -88,6 +94,7 @@ Partial Public Class UnitTest1
         End Using
 
         Return results
+
     End Function
     Private Shared Function BuildConnection() As String
 
