@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "WinFormValidationLibrary", "WinFormValidationLibrary\WinFormValidationLibrary.vbproj", "{FE5FBF9C-15DD-4CC6-92A0-E2D5F5413FA6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Form project", "Form project", "{0C1C1468-7A4A-4908-A6CE-6D4E45FC4A05}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DataGridViewExample", "DataGridViewExample\DataGridViewExample.vbproj", "{476866DA-9B0B-474C-8ED4-11EAE6B952E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,10 @@ Global
 		{FE5FBF9C-15DD-4CC6-92A0-E2D5F5413FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE5FBF9C-15DD-4CC6-92A0-E2D5F5413FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE5FBF9C-15DD-4CC6-92A0-E2D5F5413FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476866DA-9B0B-474C-8ED4-11EAE6B952E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476866DA-9B0B-474C-8ED4-11EAE6B952E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476866DA-9B0B-474C-8ED4-11EAE6B952E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476866DA-9B0B-474C-8ED4-11EAE6B952E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{AEB63A4E-EA0E-4AF0-863F-9875FE1EF461} = {F2271533-8A73-45D1-B731-FE227E7D4EB2}
 		{77EE155E-1209-427F-ABF3-3FBB9C055F61} = {C6C30F8B-4D76-428C-AACB-8776A40E015E}
 		{FE5FBF9C-15DD-4CC6-92A0-E2D5F5413FA6} = {F2271533-8A73-45D1-B731-FE227E7D4EB2}
+		{476866DA-9B0B-474C-8ED4-11EAE6B952E1} = {0C1C1468-7A4A-4908-A6CE-6D4E45FC4A05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ECDCC09-99DA-47C1-A254-684538748EEE}
