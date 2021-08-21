@@ -3,6 +3,15 @@
 	<PropertyGroup>
 		<RootNamespace>NorthWindCoreLibrary</RootNamespace>
 		<TargetFramework>net5.0</TargetFramework>
+		<OptionStrict>On</OptionStrict>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -10,16 +19,20 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9">
+
+		<!--<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		</PackageReference>-->
+
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+
+		<!--<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		</PackageReference>-->
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,7 +42,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-		<PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.6.21352.12" />
+		<!--<PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.6.21352.12" />-->
 	</ItemGroup>
 
 	<ItemGroup>

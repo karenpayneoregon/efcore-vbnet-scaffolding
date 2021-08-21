@@ -2,7 +2,7 @@
 
 Simple example working with .[Local](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1.local?view=efcore-5.0) version of data which by following this code sample learn how to look at changes prior to performing save operation back to the database.
 
-Everything is `self-contained` e.g. all Entity Framework Core code is in this project while the project DataGridView1 relies on `NorthWindCore library`.
+While DataGridViewExample is self-contained, this version uses `NorthWindCoreLibrary` for all data operations. This is the `preferred` way to work with Entity Framework Core. 
 
 **Local definition**
 
