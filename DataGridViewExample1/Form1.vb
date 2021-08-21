@@ -45,21 +45,28 @@ Public Class Form1
             ChangesTextBox.Text = ""
         End If
 
-
-
     End Sub
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
 
-        _bindingSource.AddPersonCustomer(New Customer() With {
-                                            .CompanyName = "Payne Inc",
-                                            .Street = "123 Apple Way",
-                                            .City = "Portland",
-                                            .ContactId = 1,
-                                            .ContactTypeIdentifier = 1
-                                            })
+        '_bindingSource.AddPersonCustomer(New Customer() With {
+        '                                    .CompanyName = "Payne Inc",
+        '                                    .Street = "123 Apple Way",
+        '                                    .City = "Portland",
+        '                                    .ContactId = 1,
+        '                                    .ContactTypeIdentifier = 1
+        '                                    })
 
-        _bindingSource.MoveLast()
+        '_bindingSource.MoveLast()
+
+        Dim customerForm As New AddCustomerForm
+        Try
+
+            customerForm.ShowDialog()
+        Finally
+            customerForm.Dispose()
+
+        End Try
 
     End Sub
 End Class

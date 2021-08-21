@@ -11,6 +11,11 @@ Namespace Classes
                 Return context.Contacts.Select(ContactItem.Projection).ToList()
             End Using
         End Function
+        Public Shared Function List() As List(Of Contact)
+            Using context As New NorthWindContext
+                Return context.Contacts.ToList()
+            End Using
+        End Function
         Public Shared Function ContactsGroupedByTitle() As List(Of IGrouping(Of Integer?, ContactItem))
             Return GetContactsWithProjection().
                 GroupBy(Function(contactItem) contactItem.ContactTypeIdentifier).
