@@ -11,5 +11,6 @@
         EfCoreContactUpdate
         EfCoreLikeStartsWith
         QueryStringInspection
+        EfCoreLikeEndsWith
     End Enum
 End NameSpace

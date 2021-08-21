@@ -93,13 +93,13 @@ WHERE [c].[CompanyName] LIKE N'an%'"
     End Sub
 
     <TestMethod>
-    <TestTraits(Trait.EfCoreLikeStartsWith)>
+    <TestTraits(Trait.EfCoreLikeEndsWith)>
     Sub CompanyNameContainsTest()
         Assert.AreEqual(CompanyNameEndWith(), 3)
     End Sub
 
     <TestMethod>
-    <TestTraits(Trait.EfCoreLikeStartsWith)>
+    <TestTraits(Trait.EfCoreLikeEndsWith)>
     Sub CompanyNameEndsWithTest()
         Assert.AreEqual(CompanyNameEndWith(), 3)
     End Sub
