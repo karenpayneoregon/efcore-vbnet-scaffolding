@@ -13,6 +13,7 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "NorthWindVisualBasicCore", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A79DFE6-1CE0-479D-81B7-D1F51AB2452B}"
 	ProjectSection(SolutionItems) = preProject
+		efCore.md = efCore.md
 		readme.md = readme.md
 	EndProjectSection
 EndProject
