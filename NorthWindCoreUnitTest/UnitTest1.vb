@@ -199,8 +199,8 @@ WHERE [c].[CompanyName] LIKE N'an%'"
 
         Dim connectionString = BuildConnection()
 
-        Debug.WriteLine(ConextConnectionString)
-        Assert.AreEqual(connectionString, ConextConnectionString)
+        Debug.WriteLine(ContextConnectionString)
+        Assert.AreEqual(connectionString, ContextConnectionString)
 
     End Sub
 

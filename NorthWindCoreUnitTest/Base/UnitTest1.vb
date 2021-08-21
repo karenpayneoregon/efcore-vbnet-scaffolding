@@ -7,12 +7,13 @@ Imports NorthWindCoreLibrary.Models
 
 ' ReSharper disable once CheckNamespace - do not change
 Partial Public Class UnitTest1
+
     <ClassInitialize()>
     Public Shared Sub ClassInitialize(ByVal testContext As TestContext)
         TestResults = New List(Of TestContext)()
     End Sub
 
-    Public ConextConnectionString As String = "Data Source=.\SQLEXPRESS;Initial Catalog=NorthWind2020;Integrated Security=true"
+    Public ContextConnectionString As String = "Data Source=.\SQLEXPRESS;Initial Catalog=NorthWind2020;Integrated Security=true"
 
     Public FirstCompanyName As String = CustomersOperations.CustomerProjection().FirstOrDefault().CompanyName
 
@@ -66,6 +67,11 @@ Partial Public Class UnitTest1
             Return New Customer()
         End Get
     End Property
+
+    ''' <summary>
+    ''' Simple join three models to Customer model using a DTO
+    ''' </summary>
+    ''' <returns></returns>
     Private Function JoinedCustomers() As List(Of CustomerEntity)
 
         Dim results As List(Of CustomerEntity)
@@ -96,6 +102,11 @@ Partial Public Class UnitTest1
         Return results
 
     End Function
+
+    ''' <summary>
+    ''' Replicate reading connection string as in NorthWindCoreLibrary DbContext
+    ''' </summary>
+    ''' <returns></returns>
     Private Shared Function BuildConnection() As String
 
         Dim configuration = (New ConfigurationBuilder()).AddJsonFile("appsettings.json", True, True).Build()
