@@ -47,6 +47,120 @@ Typicaly new developers will write as much code as possible in a form then and o
 A better path is to separate data operations from business logic were both are separated from the user interface.
 
 - In [DataGridViewExample](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/DataGridViewExample) project all code is in a single project, not good for reuse.
+
+
+Data is loaded from DataOperations class, CustomersLocal method
+
+```csharp
+Public Shared Async Function CustomersLocal() As Task(Of BindingList(Of Customer))
+
+    Return Await Task.Run(Async Function()
+                              Await Context.Customers.LoadAsync()
+                              Return Context.Customers.Local.ToBindingList()
+                          End Function)
+
+End Function
+```
+
+In is called in form `Shown` event.
+
+```csharp
+Try
+
+    Dim peopleLocalList As BindingList(Of Customer) = Await DataOperations.CustomersLocal()
+    _bindingSource.DataSource = peopleLocalList
+
+    CustomersDataGridView.DataSource = _bindingSource
+
+    CustomersDataGridView.ExpandColumns(True)
+
+Catch ex As Exception
+    MessageBox.Show($"Failed to load data.{Environment.NewLine}{ex.Message}")
+End Try
+```
+
+Perform add, edit and delete opterations and see the results. Note deleted records will not show, instead they are marked as deleted.
+
+This method in DataOperations class is called from a button click event in the form.
+
+```csharp
+''' <summary>
+''' Get local changes, deleted records will not show
+''' </summary>
+''' <returns></returns>
+Public Shared Function Show() As String
+
+    Dim builder As New StringBuilder()
+
+    For Each customer In Context.Customers.Local
+
+        If Context.Entry(customer).State <> EntityState.Unchanged Then
+            builder.AppendLine($"{customer.CompanyName} {customer.Street} {customer.City} {Context.Entry(customer).State}")
+        End If
+
+    Next
+
+    Return builder.ToString()
+
+End Function
+```
+
+Button Click event in the form.
+
+```csharp
+Private Sub ShowChangesButton_Click(sender As Object, e As EventArgs) Handles ShowChangesButton.Click
+
+    Dim changes = DataOperations.Show()
+
+    If Not String.IsNullOrWhiteSpace(changes) Then
+
+        ChangesTextBox.Text = changes
+
+        If SaveChangesCheckBox.Checked Then
+            MessageBox.Show($"Change count - {DataOperations.Context.SaveChanges()}")
+        End If
+
+    Else
+        ChangesTextBox.Text = ""
+    End If
+
+End Sub
+```
+
+In another button a mocked add is performed (in the DataGridViewExample1 an actual add is performed).
+
+```csharp
+Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
+
+    _bindingSource.AddPersonCustomer(New Customer() With {
+                                                 .CompanyName = "Payne Inc",
+                                                 .Street = "123 Apple Way",
+                                                 .City = "Portland",
+                                                 .ContactId = 1,
+                                                 .ContactTypeIdentifier = 1
+                                                 })
+
+    _bindingSource.MoveLast()
+
+End Sub
+```
+`AddPersonCustomer` is a language extention.
+
+```csharp
+Namespace Extensions
+    Module BindingSourceExtensions
+        <Runtime.CompilerServices.Extension>
+        Public Sub AddPersonCustomer(sender As BindingSource, customer As Customer)
+            DirectCast(sender.DataSource, BindingList(Of Customer)).Add(customer)
+        End Sub
+    End Module
+End Namespace
+```
+
+
+
+
+
 - In [DataGridViewExample1](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/DataGridViewExample) data operations are all in the project [NorthWindCoreLibrary](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreLibrary) which allows for code reuse.
 
 ## Unit test

@@ -51,8 +51,6 @@ Public Class Form1
             ChangesTextBox.Text = ""
         End If
 
-
-
     End Sub
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
