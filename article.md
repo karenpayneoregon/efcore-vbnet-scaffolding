@@ -158,11 +158,117 @@ End Namespace
 ```
 
 
-
-
-
 - In [DataGridViewExample1](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/DataGridViewExample) data operations are all in the project [NorthWindCoreLibrary](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreLibrary) which allows for code reuse.
+
+
+Data is loaded the same as `DataGridViewExample project` but in this case from the class project [NorthWindCoreLibrary](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreLibrary).
+
+Show changes and save changes is done in [NorthWindCoreLibrary](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreLibrary) project.
+
+
+Adding a new customer is done in a modal child form.
+
+![img](assets/AddCustomer1.png)
+
+If when adding there is a validation error e.g. CompanyName is required by annotating the CompanyName property.
+
+```vbnet
+Namespace Models
+    Public Partial Class Customer
+        Public Sub New()
+            Orders = New HashSet(Of Order)()
+        End Sub
+
+        ''' <summary>
+        ''' Id
+        ''' </summary>
+        Public Property CustomerIdentifier As Integer
+        ''' <summary>
+        ''' Company
+        ''' </summary>
+        <Required(ErrorMessage:="{0} is required")>
+        Public Property CompanyName As String
+```
+
+An error message is displayed.
+
+![img](assets/AddCustomer2.png)
+
+When there are no errors click the Add button the following event is raised passing the new Customer to the calling form which in turn adds the new Customer to the BindingList.
+
+```vbnet
+Public Event AddCustomerHandler As OnAddCustomer
+```
+
+</br>
+
+```vbnet
+Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
+
+    Dim customer As New Customer With {
+        .CompanyName = CompanyNameTextBox.Text,
+        .ContactId = CType(ContactComboBox.SelectedItem, Contact).ContactId,
+        .ContactTypeIdentifier = CType(ContactTypeComboBox.SelectedItem, ContactType).ContactTypeIdentifier,
+        .Street = StreetTextBox.Text,
+        .City = CityTextBox.Text,
+        .CountryIdentifier = CType(CountryComboBox.SelectedItem, Country).CountryIdentifier
+    }
+
+    Dim validationResult As EntityValidationResult = ValidationHelper.ValidateEntity(customer)
+
+    If validationResult.HasError Then
+        MessageBox.Show(validationResult.ErrorMessageList())
+    Else
+        RaiseEvent AddCustomerHandler(customer)
+        DialogResult = DialogResult.OK
+    End If
+
+End Sub
+```
+
+Let's look at how the add new customer form is setup. Simply create a new instance of the add form and subscribe to the `AddCustomerHandler` event.
+
+```vbnet
+Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
+
+    Dim customerForm As New AddCustomerForm
+
+    AddHandler customerForm.AddCustomerHandler, AddressOf NewCustomerFromAddForm
+
+    Try
+        customerForm.ShowDialog()
+    Finally
+
+        RemoveHandler customerForm.AddCustomerHandler, AddressOf NewCustomerFromAddForm
+        customerForm.Dispose()
+
+    End Try
+
+End Sub
+```
+
+Here is the event listening to add a new Customer.
+
+```vbnet
+Private Sub NewCustomerFromAddForm(sender As Customer)
+    _bindingSource.AddPersonCustomer(sender)
+    _bindingSource.MoveLast()
+End Sub
+```
+
+
+| Note  |
+| :--- |
+| In both projects there is limited code in each form, only what can not be placed into a class outside of the form. This keeps with separating concerns and if a form gets corrupt simply create a new form and copy/paste code from one form to the other form.  |
+
 
 ## Unit test
 
 Consider writing unit test for data operations which means more code to write but allows for validating code works before using in a project as shown in [NorthWindCoreUnitTest](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreUnitTest) project.
+
+Although unit testing is commonly dismissed for the occasional developer and/or hobbyist coder because it’s too much to learn and/or take time to write.
+
+There are many benefits
+
+- Confirm code works as expected without involving other parts of a project like the user interface
+- Once confirmed, later after one or more changes are made that break the application unit test can asssist in finding a problem along with finding the project by one or more testing methods or completely eliminate tested code.

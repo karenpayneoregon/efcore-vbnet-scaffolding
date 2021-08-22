@@ -58,6 +58,7 @@ Public Class Form1
         Try
             customerForm.ShowDialog()
         Finally
+
             RemoveHandler customerForm.AddCustomerHandler, AddressOf NewCustomerFromAddForm
             customerForm.Dispose()
 
