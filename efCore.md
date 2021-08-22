@@ -1,5 +1,7 @@
 # Reverse engineer script choices
 
+[Main page](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/blob/master/article.md)
+
 There are two ways to reverse engineer for VB-NET.
 
 Reverse engineering for this Visual Studio was done with the second option which was written by Karen Payne.

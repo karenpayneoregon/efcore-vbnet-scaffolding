@@ -1,8 +1,11 @@
 # EF Core 5 with VB.NET in Windows forms
 
+![img](assets/title.png)
+
 | Introduction  |
 | :--- |
 | What to expect, learn how to reverse engineer a database for EF Core 5 along with tapping into various features of EF Core. Do not just quickly examine code, copy and paste to a project but instead take time to learn then once understood then write code based off information presented here. See [reverse engineering options](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/blob/master/efCore.md).|
+| Stay tune for more on working with VB.NET and EF Core 5 and higher |
 
 Since `VB.NET` arrived developer common method to interact with databases has been with a [data provider](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers) in tangent with [TableAdapter](https://docs.microsoft.com/en-us/visualstudio/data-tools/directly-access-the-database-with-a-tableadapter?view=vs-2019), 
 [DataAdapter](https://docs.microsoft.com/en-us/dotnet/api/system.data.common.dataadapter?view=net-5.0) or 
@@ -288,9 +291,17 @@ For several test methods validation is done by using SQL-Server data provider ra
 
 For since to get a actual count in a table.
 
-``vbnet
 In both projects there is limited code in each form, only what can not be placed into a class outside of the form. This keeps with separating concerns and if a form gets corrupt simply create a new form and copy/paste code from one form to the other form.
-```
+
+
+
+# Resources
+
+- [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53804.datagridviewentity-framework-common-operations-part-1.aspx) (**Part 1**)
+- [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53821.datagridviewentity-framework-common-operations-part-2.aspx) (**Part 2**)
+- [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53822.datagridviewentity-framework-common-operations-part-2-a.aspx) (**Part 2 A**)
+
+
 
 
 
