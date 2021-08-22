@@ -2,7 +2,7 @@
 
 | Introduction  |
 | :--- |
-| What to expect, learn how to reverse engineer a database for EF Core 5 along with tapping into various features of EF Core. Do not just quickly examine code, copy and paste to a project but instead take time to learn then once understood then write code based off information presented here. |
+| What to expect, learn how to reverse engineer a database for EF Core 5 along with tapping into various features of EF Core. Do not just quickly examine code, copy and paste to a project but instead take time to learn then once understood then write code based off information presented here. See [reverse engineering options](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/blob/master/efCore.md).|
 
 Since `VB.NET` arrived developer common method to interact with databases has been with a [data provider](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers) in tangent with [TableAdapter](https://docs.microsoft.com/en-us/visualstudio/data-tools/directly-access-the-database-with-a-tableadapter?view=vs-2019), 
 [DataAdapter](https://docs.microsoft.com/en-us/dotnet/api/system.data.common.dataadapter?view=net-5.0) or 
