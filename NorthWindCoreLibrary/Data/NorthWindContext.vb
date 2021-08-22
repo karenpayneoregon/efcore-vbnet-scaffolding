@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.Extensions.Configuration
+Imports NorthWindCoreLibrary.Data.Interceptors
 Imports NorthWindCoreLibrary.Models
 
 Namespace Data
@@ -33,10 +34,66 @@ Namespace Data
         Public Overridable Property Territories As DbSet(Of Territory)
 
         Protected Overrides Sub OnConfiguring(optionsBuilder As DbContextOptionsBuilder)
+
             If Not optionsBuilder.IsConfigured Then
-                optionsBuilder.UseSqlServer(BuildConnection())
+                NormalConfiguration(optionsBuilder)
             End If
+
         End Sub
+
+        ''' <summary>
+        ''' Indicate we are using SQL-Server, read connection string from appsettings.json
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
+        Private Sub NormalConfiguration(optionsBuilder As DbContextOptionsBuilder)
+
+            optionsBuilder.UseSqlServer(BuildConnection())
+
+        End Sub
+
+        ''' <summary>
+        ''' Indicate we are using SQL-Server, read connection string from appsettings.json
+        ''' and add SavedChangesInterceptor
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
+        Private Sub WithSaveChangesInterceptor(optionsBuilder As DbContextOptionsBuilder)
+
+            optionsBuilder.
+                AddInterceptors(New SavedChangesInterceptor).
+                UseSqlServer(BuildConnection())
+
+        End Sub
+
+        ''' <summary>
+        ''' Indicate we are using SQL-Server, read connection string from appsettings.json
+        ''' and add CommandInterceptor
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
+        Private Sub WithCommandInterceptor(optionsBuilder As DbContextOptionsBuilder)
+
+            optionsBuilder.
+                AddInterceptors(New CommandInterceptor).
+                UseSqlServer(BuildConnection())
+
+        End Sub
+
+        ''' <summary>
+        ''' Indicate we are using SQL-Server, read connection string from appsettings.json
+        ''' and setup for logging to the console
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
+        Private Shared Sub LogQueryInfoToDebugOutputWindow(ByVal optionsBuilder As DbContextOptionsBuilder)
+
+            optionsBuilder.
+                UseSqlServer(BuildConnection()).
+                EnableSensitiveDataLogging().LogTo(Sub(message) Debug.WriteLine(message))
+
+        End Sub
+
+        ''' <summary>
+        ''' Read connection string from appsettings.json
+        ''' </summary>
+        ''' <returns></returns>
         Private Shared Function BuildConnection() As String
 
             Dim configuration = (New ConfigurationBuilder()).AddJsonFile("appsettings.json", True, True).Build()
@@ -46,6 +103,7 @@ Namespace Data
             Return $"Data Source={sections(1).Value};Initial Catalog={sections(0).Value};Integrated Security={sections(2).Value}"
 
         End Function
+
         Protected Overrides Sub OnModelCreating(modelBuilder As ModelBuilder)
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
 

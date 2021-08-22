@@ -4,7 +4,9 @@ Imports NorthWindCoreLibrary.FormClasses
 Imports NorthWindCoreLibrary.Models
 
 Public Class Form1
+
     Private ReadOnly _bindingSource As New BindingSource()
+
     Private Async Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         CustomersDataGridView.AutoGenerateColumns = False
