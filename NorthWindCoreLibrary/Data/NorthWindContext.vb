@@ -53,6 +53,22 @@ Namespace Data
 
         ''' <summary>
         ''' Indicate we are using SQL-Server, read connection string from appsettings.json
+        ''' Rig up for diagnosing issues
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
+        ''' <remarks>
+        ''' Turning on EnableDetailedErrors will cause EF to introduce these try-catch blocks and thereby provide more detailed errors. For example:
+        ''' </remarks>
+        Private Sub NormalConfigurationEnableDetailedErrors(optionsBuilder As DbContextOptionsBuilder)
+
+            optionsBuilder.
+                UseSqlServer(BuildConnection()).
+                LogTo(AddressOf Console.WriteLine).EnableDetailedErrors()
+
+        End Sub
+
+        ''' <summary>
+        ''' Indicate we are using SQL-Server, read connection string from appsettings.json
         ''' and add SavedChangesInterceptor
         ''' </summary>
         ''' <param name="optionsBuilder"></param>
