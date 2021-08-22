@@ -293,10 +293,19 @@ For since to get a actual count in a table.
 
 In both projects there is limited code in each form, only what can not be placed into a class outside of the form. This keeps with separating concerns and if a form gets corrupt simply create a new form and copy/paste code from one form to the other form.
 
+# Documentation
+
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
+- [Package Manager Console in Visual Studio](https://docs.microsoft.com/en-us/ef/core/cli/powershell)
+- EF Core [Interceptors](https://docs.microsoft.com/en-us/ef/core/logging-events-diagnostics/interceptors)
+- EF Core [events](https://docs.microsoft.com/en-us/ef/core/logging-events-diagnostics/events)
+- [Testing with the EF In-Memory Database](https://docs.microsoft.com/en-us/ef/core/testing/in-memory)
+- [Simple Logging](https://github.com/dotnet/EntityFramework.Docs/blob/main/samples/core/Miscellaneous/Logging/SimpleLogging/Program.cs)
 
 
 # Resources
 
+- [ADO.NET: Moving to Entity Framework](https://social.technet.microsoft.com/wiki/contents/articles/53108.ado-net-moving-to-entity-framework.aspx)
 - [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53804.datagridviewentity-framework-common-operations-part-1.aspx) (**Part 1**)
 - [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53821.datagridviewentity-framework-common-operations-part-2.aspx) (**Part 2**)
 - [DataGridView/Entity Framework common operations](https://social.technet.microsoft.com/wiki/contents/articles/53822.datagridviewentity-framework-common-operations-part-2-a.aspx) (**Part 2 A**)
