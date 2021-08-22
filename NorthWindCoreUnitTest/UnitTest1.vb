@@ -38,6 +38,11 @@ WHERE [c].[CompanyName] LIKE N'an%'"
 
     End Sub
 
+    ''' <summary>
+    ''' Demonstrates
+    ''' 1. Adding, locally a new Customer, fire CollectionChanged
+    ''' 2. Modifying the newly added Customer
+    ''' </summary>
     <TestMethod>
     <TestTraits(Trait.EfCoreCustomersSelectLocal)>
     Sub LoadCustomersLocal()
@@ -45,6 +50,8 @@ WHERE [c].[CompanyName] LIKE N'an%'"
         Using context = New NorthWindContext()
 
             Dim customers As BindingList(Of Customer) = context.Customers.Local.ToBindingList()
+
+            AddHandler context.Customers.Local.CollectionChanged, AddressOf LocalChanges
 
             Dim customer = CustomerGood
             customers.Add(customer)

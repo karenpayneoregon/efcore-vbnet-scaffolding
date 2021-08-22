@@ -1,4 +1,5 @@
-﻿Imports Microsoft.EntityFrameworkCore
+﻿Imports System.Collections.Specialized
+Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.Extensions.Configuration
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports NorthWindCoreLibrary.Classes
@@ -116,4 +117,13 @@ Partial Public Class UnitTest1
         Return $"Data Source={sections(1).Value};Initial Catalog={sections(0).Value};Integrated Security={sections(2).Value}"
 
     End Function
+
+    ''' <summary>
+    ''' Fired when the collection changes, in this case <see cref="LoadCustomersLocal"/> adds a new <see cref="Customer"/>
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub LocalChanges(sender As Object, e As NotifyCollectionChangedEventArgs)
+        Debug.WriteLine($"{e.Action}")
+    End Sub
 End Class
