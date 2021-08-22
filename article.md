@@ -51,7 +51,7 @@ A better path is to separate data operations from business logic were both are s
 
 Data is loaded from DataOperations class, CustomersLocal method
 
-```csharp
+```vbnet
 Public Shared Async Function CustomersLocal() As Task(Of BindingList(Of Customer))
 
     Return Await Task.Run(Async Function()
@@ -64,7 +64,7 @@ End Function
 
 In is called in form `Shown` event.
 
-```csharp
+```vbnet
 Try
 
     Dim peopleLocalList As BindingList(Of Customer) = Await DataOperations.CustomersLocal()
@@ -83,7 +83,7 @@ Perform add, edit and delete opterations and see the results. Note deleted recor
 
 This method in DataOperations class is called from a button click event in the form.
 
-```csharp
+```vbnet
 ''' <summary>
 ''' Get local changes, deleted records will not show
 ''' </summary>
@@ -107,7 +107,7 @@ End Function
 
 Button Click event in the form.
 
-```csharp
+```vbnet
 Private Sub ShowChangesButton_Click(sender As Object, e As EventArgs) Handles ShowChangesButton.Click
 
     Dim changes = DataOperations.Show()
@@ -129,7 +129,7 @@ End Sub
 
 In another button a mocked add is performed (in the DataGridViewExample1 an actual add is performed).
 
-```csharp
+```vbnet
 Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
 
     _bindingSource.AddPersonCustomer(New Customer() With {
@@ -146,7 +146,7 @@ End Sub
 ```
 `AddPersonCustomer` is a language extention.
 
-```csharp
+```vbnet
 Namespace Extensions
     Module BindingSourceExtensions
         <Runtime.CompilerServices.Extension>
