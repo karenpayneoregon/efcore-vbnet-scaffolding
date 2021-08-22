@@ -264,11 +264,19 @@ End Sub
 
 ## Unit test
 
-Consider writing unit test for data operations which means more code to write but allows for validating code works before using in a project as shown in [NorthWindCoreUnitTest](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreUnitTest) project.
+![img](assets/unitTesting.png)
 
-Although unit testing is commonly dismissed for the occasional developer and/or hobbyist coder because it’s too much to learn and/or take time to write.
+Although unit testing is commonly dismissed for the occasional developer and/or hobbyist coder because it is too much to learn and/or take time to write.
 
 There are many benefits
 
 - Confirm code works as expected without involving other parts of a project like the user interface
 - Once confirmed, later after one or more changes are made that break the application unit test can asssist in finding a problem along with finding the project by one or more testing methods or completely eliminate tested code.
+
+Seeing all test passing is great :heavy_check_mark:
+
+![img](assets/testresults.png)
+
+Check out some basic unit test in the unit test project [NorthWindCoreUnitTest](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreUnitTest).
+
+**TODO** Explain code logic with inherited classes
