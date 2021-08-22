@@ -23,3 +23,10 @@ Removing an entity from this collection will cause it to be marked as [Deleted](
 In the screenshot below, one record was modified and a new record added.
 
 ![screen](assets/gridBindLocal.png)
+
+Places to improve
+
+- Add more data to the DataGridView e.g. Contact type, country
+- Validate for inline data presented to the user
+
+These where not added to keep code clean and focus on the basics of EF Core Local/showing changes.
