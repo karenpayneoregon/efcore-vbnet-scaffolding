@@ -12,5 +12,7 @@
         EfCoreLikeStartsWith
         QueryStringInspection
         EfCoreLikeEndsWith
+        EfCoreHasQueryFilter
+        EfCoreJsonOperations
     End Enum
 End NameSpace

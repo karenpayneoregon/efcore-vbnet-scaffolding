@@ -1,6 +1,10 @@
 # EF Core 5 with VB.NET in Windows forms
 
-Since VB.NET arrived developer common method to interact with databases has been with a [data provider](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers) in tangent with [TableAdapter](https://docs.microsoft.com/en-us/visualstudio/data-tools/directly-access-the-database-with-a-tableadapter?view=vs-2019), 
+| Introduction  |
+| :--- |
+| What to expect, learn how to reverse engineer a database for EF Core 5 along with tapping into various features of EF Core. Do not just quickly examine code, copy and paste to a project but instead take time to learn then once understood then write code based off information presented here. |
+
+Since `VB.NET` arrived developer common method to interact with databases has been with a [data provider](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers) in tangent with [TableAdapter](https://docs.microsoft.com/en-us/visualstudio/data-tools/directly-access-the-database-with-a-tableadapter?view=vs-2019), 
 [DataAdapter](https://docs.microsoft.com/en-us/dotnet/api/system.data.common.dataadapter?view=net-5.0) or 
 using a [connection](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-5.0) and [command](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand?view=dotnet-plat-ext-5.0).
 
@@ -8,7 +12,6 @@ Then there is Entity Framework and Entity Framework Core where Entity Framework 
 
 EF Core makes interacting with data extremely easy although until recently there has not been a simple way to setup EF Core for VB.NET unlike C# where there are many options to setup EF Core.
 
-**Learn how to get started with EF Core below**
 
 # Reverse engineering
 
@@ -279,4 +282,9 @@ Seeing all test passing is great :heavy_check_mark:
 
 Check out some basic unit test in the unit test project [NorthWindCoreUnitTest](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreUnitTest).
 
-**TODO** Explain code logic with inherited classes
+There is one unit test class in the root of the test project as a partial class UnitTest1 while there is another unit test, UnitTest1 as a partial class under the Base folder. The base folder code is for assisting with actual test methods. This keeps the actual test methods clean and in some case reusable code.
+
+
+
+
+

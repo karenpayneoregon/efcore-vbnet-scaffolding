@@ -1,13 +1,12 @@
 Imports System.ComponentModel
 Imports Microsoft.EntityFrameworkCore
-Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports NorthWindCoreLibrary
 Imports NorthWindCoreLibrary.Classes
 Imports NorthWindCoreLibrary.Containers
 Imports NorthWindCoreLibrary.Data
 Imports NorthWindCoreLibrary.Models
 Imports NorthWindVisualBasicCore.Base
+Imports NorthWindVisualBasicCore.DataProviderHelpers
 Imports WinFormValidationLibrary.LanguageExtensions
 Imports WinFormValidationLibrary.Validators
 
@@ -96,19 +95,19 @@ WHERE [c].[CompanyName] LIKE N'an%'"
     <TestMethod>
     <TestTraits(Trait.EfCoreLikeStartsWith)>
     Sub CompanyNameStartsWithTest()
-        Assert.AreEqual(CompanyNameStartsWith(), 2)
+        Assert.AreEqual(CompanyNameStartsWith("an%"), 2)
     End Sub
 
     <TestMethod>
     <TestTraits(Trait.EfCoreLikeEndsWith)>
     Sub CompanyNameContainsTest()
-        Assert.AreEqual(CompanyNameEndWith(), 3)
+        Assert.AreEqual(CompanyNameContains("%S.A."), 1)
     End Sub
 
     <TestMethod>
     <TestTraits(Trait.EfCoreLikeEndsWith)>
     Sub CompanyNameEndsWithTest()
-        Assert.AreEqual(CompanyNameEndWith(), 3)
+        Assert.AreEqual(CompanyNameEndWith("%Comidas%"), 3)
     End Sub
 
 
@@ -218,4 +217,41 @@ WHERE [c].[CompanyName] LIKE N'an%'"
         Assert.IsTrue(results.Count = 91)
     End Sub
 
+    ''' <summary>
+    ''' Demonstrates HasQueryFilter found in NorthWindContext and IgnoreQueryFilters
+    '''
+    ''' Any discontinued products will not be included unless IgnoreQueryFilters is used in the query
+    ''' </summary>
+    <TestMethod>
+    <TestTraits(Trait.EfCoreHasQueryFilter)>
+    Sub ProductsHasQueryFilterTest()
+
+        Dim currentInActiveProductCount = DataOperationsSqlServer.GetProductCount(BuildConnection())
+
+        Dim activeProducts = ProductOperations.List()
+
+        Assert.AreEqual(activeProducts.Count, CurrentProductCount)
+
+        Dim allProducts = ProductOperations.ListIgnoreFilter()
+        Assert.AreEqual(allProducts.Count, currentInActiveProductCount)
+
+        activeProducts = ProductOperations.List()
+        Assert.AreEqual(activeProducts.Count, CurrentProductCount)
+
+    End Sub
+
+    ''' <summary>
+    ''' Test generic method to serialize a list to json
+    ''' </summary>
+    <TestMethod>
+    <TestTraits(Trait.EfCoreJsonOperations)>
+    Sub ProductsToJson()
+
+        ProductOperations.ToJson()
+
+        Dim activeProducts = ProductOperations.ReadProductsFromJsonFile()
+
+        Assert.AreEqual(activeProducts.Count, CurrentProductCount)
+
+    End Sub
 End Class

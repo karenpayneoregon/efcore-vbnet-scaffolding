@@ -364,6 +364,8 @@ Namespace Data
                         WithMany(Function(p) p.Products).
                         HasForeignKey(Function(e) e.SupplierId).
                         HasConstraintName("FK_Products_Suppliers")
+                    ' Karen note: Exclude discontinued products, to include use IgnoreQueryFilters
+                    entity.HasQueryFilter(Function(e) e.Discontinued = False)
                 End Sub)
 
             modelBuilder.Entity(Of Region)(

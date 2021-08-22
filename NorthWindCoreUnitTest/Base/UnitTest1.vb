@@ -5,6 +5,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports NorthWindCoreLibrary.Classes
 Imports NorthWindCoreLibrary.Data
 Imports NorthWindCoreLibrary.Models
+Imports NorthWindVisualBasicCore.DataProviderHelpers
 
 ' ReSharper disable once CheckNamespace - do not change
 Partial Public Class UnitTest1
@@ -14,15 +15,29 @@ Partial Public Class UnitTest1
         TestResults = New List(Of TestContext)()
     End Sub
 
+    ''' <summary>
+    ''' Current product count using SqlClient, not EF Core
+    ''' </summary>
+    Public Shared CurrentProductCount As Integer
+
+    <TestInitialize>
+    Public Sub IntTestMethods()
+
+        If TestContext.TestName = NameOf(ProductsHasQueryFilterTest) OrElse TestContext.TestName = NameOf(ProductsToJson) Then
+            CurrentProductCount = DataOperationsSqlServer.GetActiveProductCount(BuildConnection())
+        End If
+
+    End Sub
+
     Public ContextConnectionString As String = "Data Source=.\SQLEXPRESS;Initial Catalog=NorthWind2020;Integrated Security=true"
 
     Public FirstCompanyName As String = CustomersOperations.CustomerProjection().FirstOrDefault().CompanyName
 
-    Public Function CompanyNameStartsWith() As Integer
+    Public Function CompanyNameStartsWith(value As String) As Integer
 
         Using context As New NorthWindContext
 
-            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "an%")).ToList()
+            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, value)).ToList()
             Return results.Count
 
         End Using
@@ -35,18 +50,18 @@ Partial Public Class UnitTest1
         End Using
 
     End Function
-    Public Function CompanyNameContains() As Integer
+    Public Function CompanyNameContains(value As String) As Integer
 
         Using context As New NorthWindContext
-            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "%S.A.")).ToList()
+            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, value)).ToList()
             Return results.Count
         End Using
 
     End Function
-    Public Function CompanyNameEndWith() As Integer
+    Public Function CompanyNameEndWith(value As String) As Integer
 
         Using context As New NorthWindContext
-            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, "%Comidas%")).ToList()
+            Dim results As List(Of Customer) = context.Customers.Where(Function(customer) EF.Functions.Like(customer.CompanyName, value)).ToList()
             Return results.Count
         End Using
 
@@ -78,6 +93,7 @@ Partial Public Class UnitTest1
         Dim results As List(Of CustomerEntity)
 
         Using context = New NorthWindContext()
+            ' ReSharper disable once AccessToDisposedClosure
             results = (
                 From customer In context.Customers
                 Join contactType In context.ContactTypes On customer.ContactTypeIdentifier Equals contactType.ContactTypeIdentifier
@@ -105,7 +121,8 @@ Partial Public Class UnitTest1
     End Function
 
     ''' <summary>
-    ''' Replicate reading connection string as in NorthWindCoreLibrary DbContext
+    ''' Replicate reading connection string as in <see cref="NorthWindContext"/>  DbContext
+    ''' Used to test connection and to obtain connection string for methods in <see cref="DataOperationsSqlServer"/> 
     ''' </summary>
     ''' <returns></returns>
     Private Shared Function BuildConnection() As String
