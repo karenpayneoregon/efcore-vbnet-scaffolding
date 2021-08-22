@@ -71,18 +71,18 @@ Partial Class Form1
         Me.ChangesTextBox.Name = "ChangesTextBox"
         Me.ChangesTextBox.PlaceholderText = "No changes detected"
         Me.ChangesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.ChangesTextBox.Size = New System.Drawing.Size(581, 68)
+        Me.ChangesTextBox.Size = New System.Drawing.Size(591, 68)
         Me.ChangesTextBox.TabIndex = 3
         '
         'AddButton
         '
         Me.AddButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AddButton.Enabled = False
-        Me.AddButton.Location = New System.Drawing.Point(487, 3)
+        Me.AddButton.Location = New System.Drawing.Point(487, 4)
         Me.AddButton.Name = "AddButton"
         Me.AddButton.Size = New System.Drawing.Size(112, 23)
         Me.AddButton.TabIndex = 4
-        Me.AddButton.Text = "Mock Add"
+        Me.AddButton.Text = "Add"
         Me.AddButton.UseVisualStyleBackColor = True
         '
         'ShowChangesButton
@@ -126,7 +126,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Panel1)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "EF Core Code Sample"
         CType(Me.CustomersDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

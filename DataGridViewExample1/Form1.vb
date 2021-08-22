@@ -49,24 +49,22 @@ Public Class Form1
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
 
-        '_bindingSource.AddPersonCustomer(New Customer() With {
-        '                                    .CompanyName = "Payne Inc",
-        '                                    .Street = "123 Apple Way",
-        '                                    .City = "Portland",
-        '                                    .ContactId = 1,
-        '                                    .ContactTypeIdentifier = 1
-        '                                    })
-
-        '_bindingSource.MoveLast()
-
         Dim customerForm As New AddCustomerForm
-        Try
 
+        AddHandler customerForm.AddCustomerHandler, AddressOf NewCustomerFromAddForm
+
+        Try
             customerForm.ShowDialog()
         Finally
+            RemoveHandler customerForm.AddCustomerHandler, AddressOf NewCustomerFromAddForm
             customerForm.Dispose()
 
         End Try
 
+    End Sub
+
+    Private Sub NewCustomerFromAddForm(sender As Customer)
+        _bindingSource.AddPersonCustomer(sender)
+        _bindingSource.MoveLast()
     End Sub
 End Class

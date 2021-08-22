@@ -143,7 +143,6 @@ Partial Class AddCustomerForm
         '
         'AddButton
         '
-        Me.AddButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.AddButton.Location = New System.Drawing.Point(23, 386)
         Me.AddButton.Name = "AddButton"
         Me.AddButton.Size = New System.Drawing.Size(75, 23)
@@ -153,6 +152,7 @@ Partial Class AddCustomerForm
         '
         'CancelButton
         '
+        Me.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.CancelButton.Location = New System.Drawing.Point(214, 386)
         Me.CancelButton.Name = "CancelButton"
         Me.CancelButton.Size = New System.Drawing.Size(75, 23)

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NorthWindCoreUnitTest\NorthWindVisualBasicCore.vbproj" />
+    <ProjectReference Include="..\WinFormValidationLibrary\WinFormValidationLibrary.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
