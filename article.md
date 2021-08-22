@@ -8,6 +8,8 @@ Then there is Entity Framework and Entity Framework Core where Entity Framework 
 
 EF Core makes interacting with data extremely easy although until recently there has not been a simple way to setup EF Core for VB.NET unlike C# where there are many options to setup EF Core.
 
+**Learn how to get started with EF Core below**
+
 # Reverse engineering
 
 Reverse engineering is the process of scaffolding entity type classes and a DbContext class based on a database schema. It can be performed using the Scaffold-DbContext command of the EF Core Package Manager Console (PMC) tools or the dotnet ef dbcontext scaffold command of the .NET Command-line Interface ([CLI](http://example.com)) tools. In this article, the PMC will be used, not the CLI tools method.
@@ -38,3 +40,15 @@ Once the process has completed using the utility
   - Code in the Data.Interceptors was added after reverse engineering process.
 - `Model folder` contains classes which represents tables which were reversed engineered, example [Contact.vb](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/blob/master/NorthWindCoreLibrary/Models/Contact.vb).
 
+# Code samples
+
+Typicaly new developers will write as much code as possible in a form then and only then will consider using classes in a single form project which is fine when there will never a need to use this code.
+
+A better path is to separate data operations from business logic were both are separated from the user interface.
+
+- In [DataGridViewExample](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/DataGridViewExample) project all code is in a single project, not good for reuse.
+- In [DataGridViewExample1](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/DataGridViewExample) data operations are all in the project [NorthWindCoreLibrary](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreLibrary) which allows for code reuse.
+
+## Unit test
+
+Consider writing unit test for data operations which means more code to write but allows for validating code works before using in a project as shown in [NorthWindCoreUnitTest](https://github.com/karenpayneoregon/efcore-vbnet-scaffolding/tree/master/NorthWindCoreUnitTest) project.
