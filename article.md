@@ -284,6 +284,14 @@ Check out some basic unit test in the unit test project [NorthWindCoreUnitTest](
 
 There is one unit test class in the root of the test project as a partial class UnitTest1 while there is another unit test, UnitTest1 as a partial class under the Base folder. The base folder code is for assisting with actual test methods. This keeps the actual test methods clean and in some case reusable code.
 
+For several test methods validation is done by using SQL-Server data provider rather than hard code hard coded values as records may be added, edited or delete which would invalidate tests.
+
+For since to get a actual count in a table.
+
+``vbnet
+In both projects there is limited code in each form, only what can not be placed into a class outside of the form. This keeps with separating concerns and if a form gets corrupt simply create a new form and copy/paste code from one form to the other form.
+```
+
 
 
 
